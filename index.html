@@ -29,7 +29,6 @@
     }
 
     html, body { height: 100%; background: #D5D2CC; }
-
     body {
       font-family: 'Heebo', sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -39,7 +38,6 @@
 
     .lucide { width: 20px; height: 20px; stroke-width: 1.8; }
 
-    /* ── PHONE SHELL ── */
     .phone {
       width: 100%;
       max-width: 430px;
@@ -52,17 +50,16 @@
     /* ── TOP BAR ── */
     .topbar {
       background: var(--bg);
-      padding: 18px 20px 0;
+      padding: 18px 16px 0;
       flex-shrink: 0;
     }
     .topbar-row1 {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
-    .topbar-left { display: flex; flex-direction: column; gap: 3px; }
-    .topbar-title { font-size: 22px; font-weight: 800; color: var(--text); line-height: 1; }
+    .topbar-title { font-size: 22px; font-weight: 800; color: var(--text); line-height: 1; margin-bottom: 10px; }
     .plan-badge {
       display: inline-flex;
       align-items: center;
@@ -74,9 +71,14 @@
       padding: 3px 9px;
       border-radius: 20px;
       width: fit-content;
-      letter-spacing: 0.2px;
     }
     .plan-badge .lucide { width: 11px; height: 11px; stroke-width: 2.5; }
+    .topbar-row2 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
     .topbar-icons { display: flex; align-items: center; gap: 10px; }
     .icon-btn {
       width: 36px; height: 36px;
@@ -98,12 +100,36 @@
       border: 1.5px solid var(--bg);
     }
 
-    /* ── OVERALL PROGRESS (under title) ── */
+    /* Period toggle — directly under One+ */
+    .period-toggle {
+      display: flex;
+      background: var(--white);
+      border-radius: 50px;
+      padding: 3px;
+      gap: 2px;
+      margin-bottom: 10px;
+    }
+    .period-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      border-radius: 50px;
+      padding: 8px 4px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: 'Heebo', sans-serif;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .period-btn.active { background: var(--blue); color: var(--white); }
+
+    /* Overall progress */
     .overall-progress {
       background: var(--white);
       border-radius: var(--radius);
       padding: 14px 16px;
-      margin: 10px 0 0;
+      margin-bottom: 10px;
     }
     .op-row {
       display: flex;
@@ -115,33 +141,6 @@
     .op-value { font-size: 13px; font-weight: 700; color: var(--blue); }
     .op-bar-bg { background: var(--border); border-radius: 99px; height: 6px; overflow: hidden; }
     .op-bar-fill { height: 100%; border-radius: 99px; background: var(--blue); transition: width 0.5s ease; }
-
-    /* ── PERIOD TOGGLE ── */
-    .period-toggle {
-      display: flex;
-      background: var(--white);
-      border-radius: 50px;
-      padding: 3px;
-      margin: 12px 0 4px;
-      gap: 2px;
-    }
-    .period-btn {
-      flex: 1;
-      border: none;
-      background: transparent;
-      border-radius: 50px;
-      padding: 8px 6px;
-      font-size: 12px;
-      font-weight: 600;
-      font-family: 'Heebo', sans-serif;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
-    .period-btn.active {
-      background: var(--blue);
-      color: var(--white);
-    }
 
     /* ── SCROLL ── */
     .scroll {
@@ -157,12 +156,13 @@
       font-size: 14px;
       font-weight: 700;
       color: var(--text);
-      margin: 16px 2px 8px;
+      margin: 14px 2px 8px;
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
     }
     .section-title .lucide { width: 15px; height: 15px; color: var(--text-mid); stroke-width: 2; }
+    .section-period { font-size: 11px; font-weight: 400; color: var(--text-muted); }
     .section-count {
       font-size: 11px;
       font-weight: 500;
@@ -180,12 +180,11 @@
       overflow: hidden;
       margin-bottom: 8px;
     }
-
     .benefit-row {
       display: flex;
       align-items: center;
       padding: 13px 16px;
-      gap: 13px;
+      gap: 12px;
       border-bottom: 1px solid var(--border-light);
     }
     .benefit-row:last-child { border-bottom: none; }
@@ -205,57 +204,64 @@
       font-size: 13px;
       font-weight: 600;
       color: var(--text);
-      margin-bottom: 2px;
+      margin-bottom: 1px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .benefit-sub { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+    .benefit-sub    { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+    .benefit-amount { font-size: 13px; font-weight: 700; color: var(--green); margin-top: 2px; }
 
     .benefit-mini-bar { margin-top: 6px; display: flex; align-items: center; gap: 7px; }
     .mini-bg { flex: 1; height: 4px; background: var(--border); border-radius: 99px; overflow: hidden; }
     .mini-fill { height: 100%; border-radius: 99px; background: var(--blue); transition: width 0.5s; }
     .mini-label { font-size: 11px; color: var(--blue); font-weight: 700; white-space: nowrap; }
 
-    /* duplicate charges — two sub-rows */
-    .benefit-double {
-      display: flex;
-      gap: 8px;
-      margin-top: 6px;
-    }
-    .double-item {
-      flex: 1;
-      background: var(--bg);
-      border-radius: 7px;
-      padding: 6px 8px;
-    }
+    .benefit-double { display: flex; gap: 8px; margin-top: 6px; }
+    .double-item { flex: 1; background: var(--bg); border-radius: 7px; padding: 6px 8px; }
     .double-label { font-size: 10px; color: var(--text-muted); margin-bottom: 2px; }
     .double-value { font-size: 13px; font-weight: 700; color: var(--text); }
 
-    /* check */
     .check {
       width: 22px; height: 22px;
       background: var(--green);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      color: white;
+      flex-shrink: 0; color: white;
     }
     .check .lucide { width: 12px; height: 12px; stroke-width: 3; }
 
-    /* status pill */
     .status {
-      font-size: 11px;
-      font-weight: 600;
+      font-size: 11px; font-weight: 600;
       padding: 3px 10px;
       border-radius: 20px;
-      white-space: nowrap;
-      flex-shrink: 0;
+      white-space: nowrap; flex-shrink: 0;
     }
     .status.used    { background: var(--green-light);  color: var(--green); }
     .status.partial { background: var(--blue-light);   color: var(--blue); }
     .status.unused  { background: var(--bg);           color: var(--text-muted); }
     .status.urgent  { background: var(--orange-light); color: var(--orange); }
+
+    /* ── BOTTOM LINE ── */
+    .bottom-line {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
+    .bottom-line-title {
+      font-size: 14px; font-weight: 700; color: var(--text);
+      margin-bottom: 12px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .bottom-line-title .lucide { width: 15px; height: 15px; color: var(--text-mid); }
+    .bottom-line-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .bl-item { background: var(--bg); border-radius: var(--radius-sm); padding: 12px 14px; }
+    .bl-label { font-size: 11px; color: var(--text-muted); margin-bottom: 5px; }
+    .bl-value { font-size: 20px; font-weight: 800; }
+    .bl-value.green { color: var(--green); }
+    .bl-value.blue  { color: var(--blue); }
 
     /* ── NUDGE ── */
     .nudge-banner {
@@ -263,72 +269,52 @@
       border-radius: var(--radius);
       padding: 14px 16px;
       margin-top: 6px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      display: flex; align-items: center; gap: 12px;
       cursor: pointer;
     }
     .nudge-icon { color: var(--orange); flex-shrink: 0; }
     .nudge-icon .lucide { width: 20px; height: 20px; }
-    .nudge-text { flex: 1; }
     .nudge-text h4 { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
     .nudge-text p  { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
     .nudge-arrow { color: var(--text-muted); flex-shrink: 0; }
     .nudge-arrow .lucide { width: 16px; height: 16px; }
 
-    /* ── FOOTER CONTACT ── */
+    /* ── FOOTER ── */
     .footer-contact {
       margin-top: 20px;
       padding: 20px 16px 8px;
       text-align: center;
       border-top: 1px solid var(--border-light);
     }
-    .footer-contact h4 {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-mid);
-      margin-bottom: 12px;
-    }
+    .footer-contact h4 { font-size: 13px; font-weight: 600; color: var(--text-mid); margin-bottom: 12px; }
     .banker-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: var(--white);
-      color: var(--blue);
-      border: 1.5px solid var(--blue);
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--blue);
+      color: var(--white);
+      border: none;
       border-radius: 50px;
-      padding: 11px 26px;
-      font-size: 13px;
-      font-weight: 700;
+      padding: 12px 28px;
+      font-size: 13px; font-weight: 700;
       font-family: 'Heebo', sans-serif;
       cursor: pointer;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.2s;
     }
-    .banker-btn:hover { background: var(--blue); color: white; }
+    .banker-btn:hover { background: var(--blue-hover); }
     .banker-btn .lucide { width: 15px; height: 15px; }
 
     /* ── BOTTOM NAV ── */
     .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      max-width: 430px;
+      position: fixed; bottom: 0;
+      width: 100%; max-width: 430px;
       background: var(--white);
       border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
+      display: flex; align-items: center; justify-content: space-around;
       padding: 10px 0 18px;
       z-index: 50;
     }
     .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      cursor: pointer;
-      flex: 1;
-      color: var(--text-muted);
+      display: flex; flex-direction: column; align-items: center; gap: 3px;
+      cursor: pointer; flex: 1; color: var(--text-muted);
     }
     .nav-item .lucide { width: 21px; height: 21px; stroke-width: 1.6; }
     .nav-label { font-size: 10px; font-weight: 500; }
@@ -339,26 +325,27 @@
 <body>
 <div class="phone">
 
-  <!-- TOP BAR -->
   <div class="topbar">
-    <div class="topbar-row1">
-      <div class="topbar-left">
-        <div class="topbar-title">ההטבות שלי</div>
-        <div class="plan-badge">
-          <i data-lucide="sparkles"></i>
-          One+
-        </div>
-      </div>
+    <!-- Row 1: כותרת בלבד -->
+    <div class="topbar-title">ההטבות שלי</div>
+
+    <!-- Row 2: ONE+ ואייקונים באותה שורה -->
+    <div class="topbar-row2">
+      <div class="plan-badge"><i data-lucide="sparkles"></i> One+</div>
       <div class="topbar-icons">
-        <button class="icon-btn">
-          <i data-lucide="bell"></i>
-          <span class="notif-dot"></span>
-        </button>
+        <button class="icon-btn"><i data-lucide="bell"></i><span class="notif-dot"></span></button>
         <button class="icon-btn"><i data-lucide="user"></i></button>
       </div>
     </div>
 
-    <!-- OVERALL PROGRESS -->
+    <!-- Row 3: Period toggle -->
+    <div class="period-toggle">
+      <button class="period-btn active" onclick="setPeriod('month',this)">החודש</button>
+      <button class="period-btn"        onclick="setPeriod('year',this)">השנה</button>
+      <button class="period-btn"        onclick="setPeriod('all',this)">מאז שהצטרפתי</button>
+    </div>
+
+    <!-- Row 4: Overall progress -->
     <div class="overall-progress">
       <div class="op-row">
         <span class="op-label" id="op-label">הטבות שנוצלו החודש</span>
@@ -369,34 +356,40 @@
       </div>
     </div>
 
-    <!-- PERIOD TOGGLE -->
-    <div class="period-toggle">
-      <button class="period-btn active" onclick="setPeriod('month', this)">חודשי</button>
-      <button class="period-btn" onclick="setPeriod('year', this)">שנתי</button>
-      <button class="period-btn" onclick="setPeriod('all', this)">מאז שהצטרפתי</button>
-    </div>
   </div>
 
-  <!-- SCROLL -->
   <div class="scroll">
+
+    <!-- סה"כ חיסכון + שווי הטבות -->
+    <div class="bottom-line">
+      <div class="bottom-line-grid">
+        <div class="bl-item">
+          <div class="bl-label">סה"כ חיסכון</div>
+          <div class="bl-value green" id="bl-saved">₪225</div>
+        </div>
+        <div class="bl-item">
+          <div class="bl-label">שווי הטבות</div>
+          <div class="bl-value blue" id="bl-benefits">₪450</div>
+        </div>
+      </div>
+    </div>
 
     <!-- חו"ל ומט"ח -->
     <div class="section-title">
       <i data-lucide="plane"></i>
       חו"ל ומט"ח
+      <span class="section-period" id="sp-abroad"></span>
       <span class="section-count" id="count-abroad">3 / 4</span>
     </div>
     <div class="benefits-card">
-
       <div class="benefit-row">
         <div class="benefit-icon"><i data-lucide="arrow-left-right"></i></div>
         <div class="benefit-info">
           <div class="benefit-name">חיסכון בעמלות מט"ח</div>
-          <div class="benefit-sub" id="forex-sub">חסכת על המרות מטבע החודש</div>
+          <div class="benefit-amount" id="forex-amount">₪87</div>
         </div>
         <div class="check"><i data-lucide="check"></i></div>
       </div>
-
       <div class="benefit-row">
         <div class="benefit-icon"><i data-lucide="shield"></i></div>
         <div class="benefit-info">
@@ -405,7 +398,6 @@
         </div>
         <span class="status used">פעיל</span>
       </div>
-
       <div class="benefit-row">
         <div class="benefit-icon"><i data-lucide="wifi"></i></div>
         <div class="benefit-info">
@@ -414,26 +406,24 @@
         </div>
         <div class="check"><i data-lucide="check"></i></div>
       </div>
-
       <div class="benefit-row">
         <div class="benefit-icon"><i data-lucide="shopping-bag"></i></div>
         <div class="benefit-info">
-          <div class="benefit-name" id="shopping-name">$150 לשופינג בחו"ל</div>
-          <div class="benefit-sub" id="shopping-sub">זמין — בצע רכישה בחו"ל</div>
+          <div class="benefit-name">$150 לשופינג בחו"ל</div>
+          <div class="benefit-sub">זמין — בצע רכישה בחו"ל</div>
         </div>
-        <span class="status unused" id="shopping-status">לא מומש</span>
+        <span class="status unused">לא מומש</span>
       </div>
-
     </div>
 
     <!-- מסחר -->
     <div class="section-title">
       <i data-lucide="trending-up"></i>
       מסחר בשוק ההון
+      <span class="section-period" id="sp-trade"></span>
       <span class="section-count" id="count-trade">3 / 4</span>
     </div>
     <div class="benefits-card">
-
       <div class="benefit-row">
         <div class="benefit-icon"><i data-lucide="zap"></i></div>
         <div class="benefit-info">
@@ -445,7 +435,6 @@
         </div>
         <span class="status partial" id="trades-status">3 נותרו</span>
       </div>
-
       <div class="benefit-row">
         <div class="benefit-icon"><i data-lucide="message-circle"></i></div>
         <div class="benefit-info">
@@ -454,7 +443,6 @@
         </div>
         <span class="status unused" id="consult-status">לא מומשה</span>
       </div>
-
       <div class="benefit-row">
         <div class="benefit-icon"><i data-lucide="star"></i></div>
         <div class="benefit-info">
@@ -463,47 +451,40 @@
         </div>
         <div class="check"><i data-lucide="check"></i></div>
       </div>
-
       <div class="benefit-row">
         <div class="benefit-icon"><i data-lucide="percent"></i></div>
         <div class="benefit-info">
           <div class="benefit-name">חיסכון בעמלות מסחר</div>
-          <div class="benefit-sub" id="trading-fees-sub">דמי ניהול, משמרת, קנייה ומכירה החודש</div>
+          <div class="benefit-amount" id="trading-fees-amount">₪43</div>
         </div>
         <div class="check"><i data-lucide="check"></i></div>
       </div>
-
     </div>
 
     <!-- שונות -->
     <div class="section-title">
       <i data-lucide="gift"></i>
       שונות
-      <span class="section-count" id="count-misc">2 / 4</span>
+      <span class="section-period" id="sp-misc"></span>
+      <span class="section-count" id="count-misc">3 / 4</span>
     </div>
     <div class="benefits-card">
-
       <div class="benefit-row">
         <div class="benefit-icon"><i data-lucide="users"></i></div>
         <div class="benefit-info">
           <div class="benefit-name">BuyMe מהזמנת חברים</div>
-          <div class="benefit-mini-bar">
-            <div class="mini-bg"><div class="mini-fill" id="buyme-bar" style="width:60%"></div></div>
-            <span class="mini-label" id="buyme-label">נצבר</span>
-          </div>
+          <div class="benefit-amount" id="buyme-amount">₪300</div>
         </div>
-        <span class="status partial" id="buyme-status">בתהליך</span>
+        <span class="status partial" id="buyme-status">נצבר</span>
       </div>
-
       <div class="benefit-row">
         <div class="benefit-icon"><i data-lucide="refresh-cw"></i></div>
         <div class="benefit-info">
           <div class="benefit-name">החזר עמלות מבנקים אחרים</div>
-          <div class="benefit-sub" id="refund-sub">הוחזרו עמלות העברות החודש</div>
+          <div class="benefit-amount" id="refund-amount">₪28</div>
         </div>
         <div class="check"><i data-lucide="check"></i></div>
       </div>
-
       <div class="benefit-row">
         <div class="benefit-icon"><i data-lucide="search"></i></div>
         <div class="benefit-info">
@@ -511,29 +492,31 @@
           <div class="benefit-double">
             <div class="double-item">
               <div class="double-label">זוהו</div>
-              <div class="double-value" id="dup-found">0</div>
+              <div class="double-value" id="dup-found">1</div>
             </div>
             <div class="double-item">
               <div class="double-label">טופלו</div>
-              <div class="double-value" id="dup-handled">0</div>
+              <div class="double-value" id="dup-handled">1</div>
+            </div>
+            <div class="double-item">
+              <div class="double-label">סכום שנחסך</div>
+              <div class="double-value" id="dup-saved">₪67</div>
             </div>
           </div>
         </div>
-        <span class="status unused">לא רלוונטי</span>
+        <span class="status unused" id="dup-status">לא רלוונטי</span>
       </div>
-
-      <div class="benefit-row" id="wolt-row">
+      <div class="benefit-row">
         <div class="benefit-icon"><i data-lucide="bike"></i></div>
         <div class="benefit-info">
           <div class="benefit-name">שובר Wolt מתנה</div>
-          <div class="benefit-sub" id="wolt-sub">ממתין למימוש</div>
+          <div class="benefit-amount">₪150</div>
         </div>
-        <span class="status urgent" id="wolt-status">תפוג ב-31.3</span>
+        <span class="status urgent">תפוג ב-31.3</span>
       </div>
-
     </div>
 
-    <!-- NUDGE -->
+    <!-- Nudge -->
     <div class="nudge-banner">
       <div class="nudge-icon"><i data-lucide="clock"></i></div>
       <div class="nudge-text">
@@ -543,39 +526,24 @@
       <div class="nudge-arrow"><i data-lucide="chevron-left"></i></div>
     </div>
 
-    <!-- FOOTER CONTACT -->
+    <!-- Footer -->
     <div class="footer-contact">
-      <h4>חסרה הטבה? מידע לא נכון?</h4>
+      <h4>משהו חסר?</h4>
       <button class="banker-btn">
         <i data-lucide="message-square"></i>
         לשיחה עם בנקאי
       </button>
     </div>
 
-  </div><!-- /scroll -->
+  </div>
 
-  <!-- BOTTOM NAV -->
+  <!-- Bottom nav -->
   <div class="bottom-nav">
-    <div class="nav-item">
-      <i data-lucide="bar-chart-2"></i>
-      <span class="nav-label">ניירות ערך</span>
-    </div>
-    <div class="nav-item">
-      <i data-lucide="gem"></i>
-      <span class="nav-label">ההון שלי</span>
-    </div>
-    <div class="nav-item">
-      <i data-lucide="repeat-2"></i>
-      <span class="nav-label">תשלומים</span>
-    </div>
-    <div class="nav-item">
-      <i data-lucide="layout-grid"></i>
-      <span class="nav-label">החשבון שלי</span>
-    </div>
-    <div class="nav-item active">
-      <i data-lucide="home"></i>
-      <span class="nav-label">בית</span>
-    </div>
+    <div class="nav-item"><i data-lucide="bar-chart-2"></i><span class="nav-label">ניירות ערך</span></div>
+    <div class="nav-item"><i data-lucide="gem"></i><span class="nav-label">ההון שלי</span></div>
+    <div class="nav-item"><i data-lucide="repeat-2"></i><span class="nav-label">תשלומים</span></div>
+    <div class="nav-item"><i data-lucide="layout-grid"></i><span class="nav-label">החשבון שלי</span></div>
+    <div class="nav-item active"><i data-lucide="home"></i><span class="nav-label">בית</span></div>
   </div>
 
 </div>
@@ -583,62 +551,48 @@
 <script>
   lucide.createIcons();
 
-  const data = {
+  // Math check per period:
+  // month:  forex87 + fees43 + refund28 + dup67 = 225 | buyme300 + wolt150 = 450
+  // year:   forex524 + fees258 + refund167 + dup134 = 1,083 | buyme300 + wolt150 = 450
+  // all:    forex1240 + fees612 + refund389 + dup335 = 2,576 | buyme300 + wolt450(×3) + stock250 = 1,000
+  const periods = {
     month: {
-      opLabel: 'הטבות שנוצלו החודש',
-      opValue: '8 / 12',
-      opPct: 66,
-      opShowBar: true,
-      forexSub: 'חסכת על המרות מטבע החודש',
-      shoppingName: '$150 לשופינג בחו"ל',
-      shoppingSub: 'זמין — בצע רכישה בחו"ל',
-      shoppingStatus: ['לא מומש', 'unused'],
+      label: '· החודש',
+      opLabel: 'הטבות שנוצלו החודש', opValue: '8 / 12', opPct: 66, showBar: true,
+      forexAmount: '₪87',
       tradesBar: 70, tradesLabel: '7 / 10', tradesStatus: ['3 נותרו', 'partial'],
-      consultSub: 'קבע תור עם מומחה השקעות',
-      consultStatus: ['לא מומשה', 'unused'],
-      tradingFeesSub: 'דמי ניהול, משמרת, קנייה ומכירה החודש',
-      buymeBar: 60, buymeLabel: 'נצבר', buymeStatus: ['בתהליך', 'partial'],
-      refundSub: 'הוחזרו עמלות העברות החודש',
-      dupFound: '0', dupHandled: '0',
-      woltSub: 'ממתין למימוש', woltStatus: ['תפוג ב-31.3', 'urgent'],
-      countAbroad: '3 / 4', countTrade: '3 / 4', countMisc: '2 / 4',
+      consultSub: 'קבע תור עם מומחה השקעות', consultStatus: ['לא מומשה', 'unused'],
+      tradingFeesAmount: '₪43',
+      buymeAmount: '₪300', buymeStatus: ['נצבר', 'partial'],
+      refundAmount: '₪28',
+      dupFound: '1', dupHandled: '1', dupSaved: '₪67', dupStatus: ['טופל', 'used'],
+      blSaved: '₪225', blBenefits: '₪450',
+      countAbroad: '3 / 4', countTrade: '3 / 4', countMisc: '3 / 4',
     },
     year: {
-      opLabel: 'הטבות שנוצלו השנה',
-      opValue: '8 הטבות',
-      opPct: 0,
-      opShowBar: false,
-      forexSub: 'חסכת על המרות מטבע השנה',
-      shoppingName: '$150 לשופינג בחו"ל',
-      shoppingSub: 'זמין — בצע רכישה בחו"ל',
-      shoppingStatus: ['לא מומש', 'unused'],
+      label: '· השנה',
+      opLabel: 'הטבות שנוצלו השנה', opValue: '8 הטבות', opPct: 0, showBar: false,
+      forexAmount: '₪524',
       tradesBar: 23, tradesLabel: '27 / 120', tradesStatus: ['93 נותרו', 'partial'],
-      consultSub: 'קבע תור עם מומחה השקעות',
-      consultStatus: ['לא מומשה', 'unused'],
-      tradingFeesSub: 'דמי ניהול, משמרת, קנייה ומכירה השנה',
-      buymeBar: 100, buymeLabel: '3 חברים', buymeStatus: ['נצבר', 'used'],
-      refundSub: 'הוחזרו עמלות העברות השנה',
-      dupFound: '2', dupHandled: '2',
-      woltSub: 'ממתין למימוש', woltStatus: ['תפוג ב-31.3', 'urgent'],
+      consultSub: 'קבע תור עם מומחה השקעות', consultStatus: ['לא מומשה', 'unused'],
+      tradingFeesAmount: '₪258',
+      buymeAmount: '₪300', buymeStatus: ['3 חברים', 'used'],
+      refundAmount: '₪167',
+      dupFound: '2', dupHandled: '2', dupSaved: '₪134', dupStatus: ['טופלו', 'used'],
+      blSaved: '₪1,083', blBenefits: '₪450',
       countAbroad: '3 / 4', countTrade: '3 / 4', countMisc: '3 / 4',
     },
     all: {
-      opLabel: 'הטבות שנוצלו מאז ההצטרפות',
-      opValue: '11 הטבות',
-      opPct: 0,
-      opShowBar: false,
-      forexSub: 'חסכת על המרות מטבע מאז ההצטרפות',
-      shoppingName: '$150 לשופינג בחו"ל',
-      shoppingSub: 'זמין — בצע רכישה בחו"ל',
-      shoppingStatus: ['לא מומש', 'unused'],
+      label: '· מאז שהצטרפתי',
+      opLabel: 'הטבות שנוצלו מאז ההצטרפות', opValue: '11 הטבות', opPct: 0, showBar: false,
+      forexAmount: '₪1,240',
       tradesBar: 100, tradesLabel: '84 פעולות', tradesStatus: ['84 פעולות', 'used'],
-      consultSub: 'קבע תור עם מומחה השקעות',
-      consultStatus: ['לא מומשה', 'unused'],
-      tradingFeesSub: 'דמי ניהול, משמרת, קנייה ומכירה סה"כ',
-      buymeBar: 100, buymeLabel: '3 חברים', buymeStatus: ['3 חברים', 'used'],
-      refundSub: 'סה"כ עמלות שהוחזרו',
-      dupFound: '5', dupHandled: '5',
-      woltSub: 'ממתין למימוש', woltStatus: ['תפוג ב-31.3', 'urgent'],
+      consultSub: 'קבע תור עם מומחה השקעות', consultStatus: ['לא מומשה', 'unused'],
+      tradingFeesAmount: '₪612',
+      buymeAmount: '₪300', buymeStatus: ['3 חברים', 'used'],
+      refundAmount: '₪389',
+      dupFound: '5', dupHandled: '5', dupSaved: '₪335', dupStatus: ['5 טופלו', 'used'],
+      blSaved: '₪2,576', blBenefits: '₪1,000',
       countAbroad: '3 / 4', countTrade: '3 / 4', countMisc: '3 / 4',
     }
   };
@@ -646,36 +600,39 @@
   function setPeriod(period, btn) {
     document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const d = data[period];
+    const d = periods[period];
 
-    document.getElementById('op-label').textContent    = d.opLabel;
-    document.getElementById('op-value').textContent    = d.opValue;
-    const barEl = document.getElementById('op-bar');
+    document.getElementById('op-label').textContent = d.opLabel;
+    document.getElementById('op-value').textContent = d.opValue;
     const barWrap = document.getElementById('op-bar-wrap');
-    if (d.opShowBar) {
-      barWrap.style.display = 'block';
-      barEl.style.width = d.opPct + '%';
-    } else {
-      barWrap.style.display = 'none';
-    }
-    document.getElementById('forex-sub').textContent   = d.forexSub;
-    document.getElementById('shopping-name').textContent = d.shoppingName;
-    document.getElementById('shopping-sub').textContent  = d.shoppingSub;
-    setStatus('shopping-status', d.shoppingStatus);
+    barWrap.style.display = d.showBar ? 'block' : 'none';
+    if (d.showBar) document.getElementById('op-bar').style.width = d.opPct + '%';
+
+    ['abroad','trade','misc'].forEach(k =>
+      document.getElementById('sp-' + k).textContent = d.label
+    );
+
+    document.getElementById('forex-amount').textContent        = d.forexAmount;
+    document.getElementById('trading-fees-amount').textContent = d.tradingFeesAmount;
+    document.getElementById('buyme-amount').textContent        = d.buymeAmount;
+    document.getElementById('refund-amount').textContent       = d.refundAmount;
+
     document.getElementById('trades-bar').style.width  = d.tradesBar + '%';
     document.getElementById('trades-label').textContent = d.tradesLabel;
     setStatus('trades-status', d.tradesStatus);
-    document.getElementById('consult-sub').textContent    = d.consultSub;
+
+    document.getElementById('consult-sub').textContent = d.consultSub;
     setStatus('consult-status', d.consultStatus);
-    document.getElementById('trading-fees-sub').textContent = d.tradingFeesSub;
-    document.getElementById('buyme-bar').style.width    = d.buymeBar + '%';
-    document.getElementById('buyme-label').textContent  = d.buymeLabel;
     setStatus('buyme-status', d.buymeStatus);
-    document.getElementById('refund-sub').textContent   = d.refundSub;
-    document.getElementById('dup-found').textContent    = d.dupFound;
-    document.getElementById('dup-handled').textContent  = d.dupHandled;
-    document.getElementById('wolt-sub').textContent     = d.woltSub;
-    setStatus('wolt-status', d.woltStatus);
+
+    document.getElementById('dup-found').textContent   = d.dupFound;
+    document.getElementById('dup-handled').textContent = d.dupHandled;
+    document.getElementById('dup-saved').textContent   = d.dupSaved;
+    setStatus('dup-status', d.dupStatus);
+
+    document.getElementById('bl-saved').textContent    = d.blSaved;
+    document.getElementById('bl-benefits').textContent = d.blBenefits;
+
     document.getElementById('count-abroad').textContent = d.countAbroad;
     document.getElementById('count-trade').textContent  = d.countTrade;
     document.getElementById('count-misc').textContent   = d.countMisc;
@@ -684,8 +641,13 @@
   function setStatus(id, [text, cls]) {
     const el = document.getElementById(id);
     el.textContent = text;
-    el.className = 'status ' + cls;
+    el.className   = 'status ' + cls;
   }
+
+  // init labels
+  ['abroad','trade','misc'].forEach(k =>
+    document.getElementById('sp-' + k).textContent = '· החודש'
+  );
 </script>
 </body>
 </html>
