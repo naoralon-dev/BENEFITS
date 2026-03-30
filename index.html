@@ -648,6 +648,51 @@
   ['abroad','trade','misc'].forEach(k =>
     document.getElementById('sp-' + k).textContent = '· החודש'
   );
+
+  // ── SWIPE TO CHANGE PERIOD ──
+  const periodOrder = ['month', 'year', 'all'];
+  let currentPeriod = 0;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  const SWIPE_THRESHOLD = 50;
+
+  const scrollEl = document.querySelector('.scroll');
+
+  scrollEl.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  scrollEl.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+
+    // ignore vertical scrolling
+    if (Math.abs(dy) > Math.abs(dx)) return;
+    if (Math.abs(dx) < SWIPE_THRESHOLD) return;
+
+    // RTL: swipe left (dx < 0) → next period, swipe right (dx > 0) → prev period
+    const dir = dx < 0 ? 1 : -1;
+    const next = currentPeriod + dir;
+    if (next < 0 || next >= periodOrder.length) return;
+
+    currentPeriod = next;
+    const periodKey = periodOrder[currentPeriod];
+    const btn = document.querySelectorAll('.period-btn')[currentPeriod];
+    setPeriod(periodKey, btn);
+
+    // animate scroll area
+    scrollEl.style.transition = 'opacity 0.15s';
+    scrollEl.style.opacity = '0';
+    setTimeout(() => {
+      scrollEl.style.opacity = '1';
+    }, 150);
+  }, { passive: true });
+
+  // sync currentPeriod when clicking buttons
+  document.querySelectorAll('.period-btn').forEach((btn, i) => {
+    btn.addEventListener('click', () => { currentPeriod = i; });
+  });
 </script>
 </body>
 </html>
